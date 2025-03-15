@@ -2,20 +2,23 @@
 
 usage() {
   cat <<EOF
-Run a Python script or Marimo notebook in a Modal cloud environment.
+Run a Python script, Marimo notebook, or Jupyter notebook in a Modal cloud environment.
 
 Usage:
-    $(basename "$0") [options] <script.py>
+    $(basename "$0") [options] <file>
 
 Options:
     -h, --help     Show this help message
 
 Parameters:
-    script.py   - Path to the Python script or Marimo notebook (.py file) to run
+    file   - Path to the file to run:
+             - Python script (.py)
+             - Marimo notebook (.py with marimo imports)
+             - Jupyter notebook (.ipynb)
 
 Example:
     $(basename "$0") my_script.py
-
+    $(basename "$0") my_notebook.ipynb
 EOF
   exit 1
 }
@@ -26,16 +29,24 @@ while [[ $# -gt 0 ]]; do
     usage
     ;;
   *)
-    if [ -f "$1" ] && [[ "$1" =~ \.py$ ]]; then
-      script_path=$(realpath "$1")
-      echo "Using script: $script_path"
+    if [ -f "$1" ]; then
+      file_path=$(realpath "$1")
+      echo "Using file: $file_path"
 
-      if grep -q "import marimo" "$script_path"; then
-        export MARIMO_NOTEBOOK_PATH="$script_path"
-        executor="modal-execute-marimo.py"
+      if [[ "$1" =~ \.ipynb$ ]]; then
+        export IPYNB_PATH="$file_path"
+        executor="./modal-execute-ipynb.py"
+      elif [[ "$1" =~ \.py$ ]]; then
+        if grep -q "import marimo" "$file_path"; then
+          export MARIMO_NOTEBOOK_PATH="$file_path"
+          executor="./modal-execute-marimo.py"
+        else
+          export PY_SCRIPT_PATH="$file_path"
+          executor="./modal-execute.py"
+        fi
       else
-        export PY_SCRIPT_PATH="$script_path"
-        executor="modal-execute-py.py"
+        echo "Error: Unsupported file type. Please provide a .py or .ipynb file."
+        usage
       fi
 
       shift
@@ -46,7 +57,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [ -z "$script_path" ]; then
+if [ -z "$file_path" ]; then
   usage
 fi
 

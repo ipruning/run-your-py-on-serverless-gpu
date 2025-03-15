@@ -10,6 +10,10 @@
 
 如果大家想用 jupyter 逻辑也是类似，略微修改即可。
 
+```bash
+./modal.bash notebook.py
+```
+
 ## ChangeLog
 
 - 250316 init
