@@ -13,10 +13,7 @@ if not PY_SCRIPT_PATH.exists():
 
 app = modal.App(
     image=modal.Image.debian_slim()
-    .pip_install(
-        "modal",
-        "uv",
-    )
+    .pip_install("uv")
     .add_local_file(
         PY_SCRIPT_PATH,
         remote_path="/root/main.py",
@@ -24,9 +21,7 @@ app = modal.App(
 )
 
 
-# L40S
-# H100
-@app.function(max_containers=1, timeout=1_500, gpu="H100")
+@app.function(max_containers=1, timeout=1_500, gpu="H100")  # L40S
 def run_py(timeout: int):
     py_process = subprocess.Popen(
         [

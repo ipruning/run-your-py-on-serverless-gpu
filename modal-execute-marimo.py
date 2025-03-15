@@ -14,7 +14,7 @@ if not MARIMO_NOTEBOOK_PATH.exists():
 
 app = modal.App(
     image=modal.Image.debian_slim()
-    .pip_install("uv>=0.6.6")
+    .pip_install("uv")
     .add_local_file(MARIMO_NOTEBOOK_PATH, remote_path="/root/main.py")
 )
 
@@ -22,9 +22,7 @@ TOKEN = secrets.token_urlsafe(16)
 PORT = 2718
 
 
-# L40S
-# H100
-@app.function(max_containers=1, timeout=1_500, gpu="H100")
+@app.function(max_containers=1, timeout=1_500, gpu="H100")  # L40S
 def run_marimo(timeout: int):
     with modal.forward(PORT) as tunnel:
         marimo_process = subprocess.Popen(

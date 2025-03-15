@@ -30,7 +30,6 @@ while [[ $# -gt 0 ]]; do
       script_path=$(realpath "$1")
       echo "Using script: $script_path"
 
-      # Check if file imports marimo
       if grep -q "import marimo" "$script_path"; then
         export MARIMO_NOTEBOOK_PATH="$script_path"
         executor="modal-execute-marimo.py"
