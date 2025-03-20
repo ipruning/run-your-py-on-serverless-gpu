@@ -13,7 +13,9 @@ if not MARIMO_NOTEBOOK_PATH.exists():
     raise ValueError("MARIMO_NOTEBOOK_PATH IS NOT SET / DOES NOT EXIST")
 
 app = modal.App(
-    image=modal.Image.debian_slim().pip_install("uv").add_local_file(MARIMO_NOTEBOOK_PATH, remote_path="/root/main.py")
+    image=modal.Image.debian_slim()
+    .pip_install("uv")
+    .add_local_file(MARIMO_NOTEBOOK_PATH, remote_path="/root/main.py")
 )
 
 TOKEN = secrets.token_urlsafe(16)
