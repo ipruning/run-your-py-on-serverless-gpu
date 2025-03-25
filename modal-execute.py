@@ -13,6 +13,7 @@ if not PY_SCRIPT_PATH.exists():
 
 app = modal.App(
     image=modal.Image.debian_slim()
+    .pip_install("pip==25.0.1")
     .pip_install("uv")
     .add_local_file(
         PY_SCRIPT_PATH,
