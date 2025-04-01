@@ -4,4 +4,4 @@ version = "0.1.0"
 description = "Demo of running Python scripts, Jupyter notebooks, and Marimo notebooks on a serverless GPU"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = ["modal>=0.73.107"]
+dependencies = ["modal>=0.73.138"]

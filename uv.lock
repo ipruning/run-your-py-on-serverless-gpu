@@ -228,7 +228,7 @@ wheels = [
 
 [[package]]
 name = "modal"
-version = "0.73.107"
+version = "0.73.138"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -246,9 +246,9 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "watchfiles" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/df/87/3bb46589bb1de8355f269d756ffa4b30c92830207beb6db82506178e5e80/modal-0.73.107.tar.gz", hash = "sha256:94445ddadf74687b16817dad8f356b4ce812d6e7fbcdda765639fab476866710", size = 472365 }
+sdist = { url = "https://files.pythonhosted.org/packages/38/27/67290f59fee2e87cb0508e1c2deb5e2b937b89fb098190feef9e53455f9e/modal-0.73.138.tar.gz", hash = "sha256:943daebf7dea70d16b978c633ff3cfc1d453151043f64c7a9012e2526b6be2d2", size = 483747 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b3/4d/4518314f4e6fa83770e6b7c7934ac83db4f22851f4e9a58d40fc7a85bfa6/modal-0.73.107-py3-none-any.whl", hash = "sha256:116c235dda1ce17d2ffd87b0f5fc0f4585aae1577816435c45d055a342b7d0e0", size = 539135 },
+    { url = "https://files.pythonhosted.org/packages/54/d9/cc4812c56894458aa6361817df1faa84a67f9b2e4f99d27efdec890dccf5/modal-0.73.138-py3-none-any.whl", hash = "sha256:da60510d789509e1a5c9c4a2458e0295dfbee768eae71f0bba739b99215d2a08", size = 551175 },
 ]
 
 [[package]]
@@ -400,7 +400,7 @@ dependencies = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "modal", specifier = ">=0.73.107" }]
+requires-dist = [{ name = "modal", specifier = ">=0.73.138" }]
 
 [[package]]
 name = "shellingham"
